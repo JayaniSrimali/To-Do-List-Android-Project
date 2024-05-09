@@ -40,4 +40,23 @@ class TODODatabaseHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_N
         db.insert(TABLE_NAME,null,values)
         db.close()
     }
+
+    fun getAllTodoList(): List <TODO> {
+        val todoList = mutableListOf<TODO>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME"
+        val cursor = db.rawQuery(query,null)
+
+        while (cursor.moveToNext()){
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+            val context = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+
+            val todo = TODO(id,title,context)
+            todoList.add(todo)
+        }
+        cursor.close()
+        db.close()
+        return todoList
+    }
 }
