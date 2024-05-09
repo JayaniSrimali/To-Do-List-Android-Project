@@ -1,5 +1,6 @@
 package com.example.to_dolistapp
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -9,7 +10,7 @@ class TODODatabaseHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_N
 
     companion object{
         private const val DATABASE_NAME = "todoapp.dp"
-        private const val DATABASE_VERSION = "1"
+        private const val DATABASE_VERSION = 1
         private const val TABLE_NAME = "alltodo"
         private const val COLUMN_ID = "id"
         private const val COLUMN_TITLE = "title"
@@ -29,5 +30,14 @@ class TODODatabaseHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_N
         db?.execSQL(dropTableQuery)
         onCreate(db)
 
+    }
+    fun insertTodo(todo: TODO){
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_TITLE,todo.title)
+            put(COLUMN_CONTENT,todo.content)
+        }
+        db.insert(TABLE_NAME,null,values)
+        db.close()
     }
 }
