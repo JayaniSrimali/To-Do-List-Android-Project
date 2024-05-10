@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ToDoListAPP"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddListActivity"
             android:exported="false" />
         <activity
