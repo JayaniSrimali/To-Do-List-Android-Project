@@ -24,7 +24,7 @@
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_arrow_downward_24"
+        android:src="@drawable/baseline_check_24"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@id/addTodoHeading"
         android:layout_marginEnd="6dp"/>
