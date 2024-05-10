@@ -59,4 +59,32 @@ class TODODatabaseHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_N
         db.close()
         return todoList
     }
+
+    fun updateTodo(todo: TODO){
+        val db = writableDatabase
+        val  values = ContentValues().apply {
+            put(COLUMN_TITLE,todo.title)
+            put(COLUMN_CONTENT,todo.content)
+        }
+
+        val whereClause = "$COLUMN_ID = ?"
+        val  whereArgs = arrayOf(todo.id.toString())
+        db.update(TABLE_NAME,values,whereClause,whereArgs)
+        db.close()
+    }
+    fun getTodoByID(todoId :Int):TODO{
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $todoId"
+        val cursor = db.rawQuery(query,null)
+        cursor.moveToFirst()
+
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+        val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+        val context = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+
+        cursor.close()
+        db.close()
+        return  TODO(id,title,context)
+
+    }
 }
