@@ -23,6 +23,7 @@ class AddListActivity : AppCompatActivity() {
             val content = binding.contentEditText.text.toString()
             val todo =  TODO(0,title,content)
             db.insertTodo(todo)
+            finish()
             Toast.makeText(this,"To to saved",Toast.LENGTH_SHORT).show()
         }
     }
