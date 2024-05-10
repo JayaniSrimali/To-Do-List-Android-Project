@@ -1,9 +1,11 @@
 package com.example.to_dolistapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ class TodoAdapter(private var todo: List<TODO>,context: Context) :
     class TodoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val titleTextView:  TextView = itemView.findViewById(R.id.titleTextView)
         val contextTextView:  TextView = itemView.findViewById(R.id.contentTextView)
+        val updateButton:  ImageView= itemView.findViewById(R.id.updatesaveButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
@@ -30,6 +33,13 @@ class TodoAdapter(private var todo: List<TODO>,context: Context) :
         holder.titleTextView.text = todo.title
         holder.contextTextView.text = todo.content
 
+        holder.updateButton.setOnClickListener {
+            val intent =   Intent(holder.itemView.context,UpdateActivity::class.java).apply {
+                putExtra("todo_id",todo.id)
+            }
+            holder.itemView.context.startActivity(intent)
+
+        }
     }
     fun refreshData(newTODO: List<TODO>){
         todo = newTODO
