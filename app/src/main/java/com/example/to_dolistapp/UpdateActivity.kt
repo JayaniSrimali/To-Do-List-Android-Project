@@ -29,7 +29,7 @@ class UpdateActivity : AppCompatActivity() {
         binding.updatetitleEditText.setText(todo.title)
         binding.updatecontentEditText.setText(todo.content)
 
-        binding.updatesaveButton.setOnClickListener {
+        binding.updateButton.setOnClickListener {
             val newTitle = binding.updatecontentEditText.text.toString()
             val  newContent = binding.updatecontentEditText.text.toString()
             val updateTodo = TODO(todoId,newTitle,newContent)

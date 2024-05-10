@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="#D0DDD1"
     tools:context=".UpdateActivity">
 
     <TextView
@@ -21,7 +22,7 @@
         android:textSize="24sp" />
 
     <ImageView
-        android:id="@+id/updatesaveButton"
+        android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_check_24"
