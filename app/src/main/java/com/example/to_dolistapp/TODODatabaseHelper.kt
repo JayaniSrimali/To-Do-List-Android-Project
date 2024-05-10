@@ -69,12 +69,12 @@ class TODODatabaseHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_N
 
         val whereClause = "$COLUMN_ID = ?"
         val  whereArgs = arrayOf(todo.id.toString())
-        db.update(TABLE_NAME,values,whereClause,whereArgs)
+        db.update(TABLE_NAME, values , whereClause , whereArgs)
         db.close()
     }
     fun getTodoByID(todoId :Int):TODO{
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $todoId"
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $todoId "
         val cursor = db.rawQuery(query,null)
         cursor.moveToFirst()
 
