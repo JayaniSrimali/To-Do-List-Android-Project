@@ -15,7 +15,7 @@ class UpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_update)
+        setContentView(binding.root)
 
         db = TODODatabaseHelper(this)
 
@@ -30,12 +30,13 @@ class UpdateActivity : AppCompatActivity() {
         binding.updatecontentEditText.setText(todo.content)
 
         binding.updateButton.setOnClickListener {
-            val newTitle = binding.updatecontentEditText.text.toString()
+            val newTitle = binding.updatetitleEditText.text.toString()
             val  newContent = binding.updatecontentEditText.text.toString()
-            val updateTodo = TODO(todoId,newTitle,newContent)
+            val updateTodo = TODO(todoId, newTitle, newContent)
             db.updateTodo(updateTodo)
-            finish()
             Toast.makeText(this,"Changes saved",Toast.LENGTH_SHORT).show()
+            finish()
+
         }
 
     }
