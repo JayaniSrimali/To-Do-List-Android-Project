@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 
 class TodoAdapter(private var todo: List<TODO>,context: Context) :
     RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+        private val db : TODODatabaseHelper = TODODatabaseHelper(context)
 
     class TodoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val titleTextView:  TextView = itemView.findViewById(R.id.titleTextView)
         val contextTextView:  TextView = itemView.findViewById(R.id.contentTextView)
-        val updateButton:  ImageView= itemView.findViewById(R.id.updatesaveButton)
+        val updateButton:  ImageView= itemView.findViewById(R.id.updateButton)
+        val deleteButton:  ImageView= itemView.findViewById(R.id.deleteButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
@@ -40,10 +43,18 @@ class TodoAdapter(private var todo: List<TODO>,context: Context) :
             holder.itemView.context.startActivity(intent)
 
         }
+
+        holder.deleteButton.setOnClickListener {
+            db.deleteTodo(todo.id)
+            refreshData(db.getAllTodoList())
+            Toast.makeText(holder.itemView.context," Todo deleted ",Toast.LENGTH_SHORT).show()
+        }
+
     }
     fun refreshData(newTODO: List<TODO>){
         todo = newTODO
         notifyDataSetChanged()
+
     }
 
 }
