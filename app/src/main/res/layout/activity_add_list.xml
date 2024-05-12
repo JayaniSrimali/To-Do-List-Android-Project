@@ -20,6 +20,7 @@
         android:fontFamily="@font/poppins"
         android:text="Add To Do List"
         android:textColor="@color/green"
+        android:textStyle="bold"
         android:textSize="24sp" />
 
     <ImageView

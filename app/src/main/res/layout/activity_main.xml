@@ -16,6 +16,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins"
         android:text="TO DO LIST"
+        android:textStyle="bold"
         android:layout_marginStart="18dp"
         android:textColor="@color/green"
         android:textSize="24sp"
