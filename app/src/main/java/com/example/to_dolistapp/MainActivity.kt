@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     override fun onResume() {
         super.onResume()
         todoAdapter.refreshData(db.getAllTodoList())

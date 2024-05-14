@@ -8,6 +8,8 @@
     android:background="#D0DDD1"
     tools:context=".MainActivity">
 
+
+
     <TextView
         android:id="@+id/todoHeading"
         android:layout_width="wrap_content"
